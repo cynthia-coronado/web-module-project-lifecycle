@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react'
 import axios from 'axios'
+import GithubSearchForm from './components/GithubSearchForm'
+import GithubUser from './components/GithubUser'
 
 class App extends React.Component {
   constructor(){
@@ -38,19 +40,13 @@ class App extends React.Component {
   componentDidUpdate() {
     console.log('App: CDU');
   }
-  handleChange = (event) => {
-
-  }
-  handleSubmit = (event) => {
-    event.preventDefault()
-  }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          Github Project
-        </header>
+        <h1>Github Project</h1>
+        <GithubSearchForm />
+        <GithubUser user = {this.state.user}/>
       </div>
     );
   }
