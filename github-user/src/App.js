@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import GithubSearchForm from './components/GithubSearchForm'
 import GithubUser from './components/GithubUser'
+import UserFollowers from './components/UserFollowers'
 
 class App extends React.Component {
   constructor(){
@@ -17,7 +18,7 @@ class App extends React.Component {
     axios
     .get('https://api.github.com/users/cynthia-coronado')
     .then(response => {
-      console.log(response);
+      console.log('user',response);
       this.setState({
         user: response.data
       })
@@ -28,7 +29,7 @@ class App extends React.Component {
     axios 
     .get(' https://api.github.com/users/cynthia-coronado/followers')
     .then(response => {
-      console.log(response);
+      console.log('follower', response);
       this.setState({
         followers: response.data
       })
@@ -43,10 +44,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='app-container'>
         <h1>Github Project</h1>
         <GithubSearchForm />
         <GithubUser user = {this.state.user}/>
+       {
+        this.state.followers &&
+        this.state.followers.map((follower) => {
+        return <UserFollowers key={follower.id} follower={follower} />
+        })
+       }
       </div>
     );
   }
