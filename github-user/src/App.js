@@ -38,6 +38,7 @@ class App extends React.Component {
       console.log(error);
     }) 
   }
+
   componentDidUpdate() {
     console.log('App: CDU');
   }
